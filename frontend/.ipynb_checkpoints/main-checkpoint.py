@@ -94,7 +94,6 @@ elif selected_page == "Predict with Form":
             Income = st.number_input("Income (USD)", min_value=0.0, value=60000.0, step=1000.0)
 
         Dietary_Habits = st.selectbox("Dietary Habits", ["Unhealthy", "Moderate", "Healthy"])
-        History_of_Mental_Illness = st.selectbox("History of Mental Illness", ["Yes", "No"])
         History_of_Substance_Abuse = st.selectbox("History of Substance Abuse", ["Yes", "No"])
         Family_History_of_Depression = st.selectbox("Family History of Depression", ["Yes", "No"])
         Chronic_Medical_Conditions = st.selectbox("Chronic Medical Conditions", ["Yes", "No"])
