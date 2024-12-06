@@ -111,7 +111,6 @@ elif selected_page == "Predict with Form":
             "Alcohol_Consumption": Alcohol_Consumption,
             "Dietary_Habits": Dietary_Habits,
             "Sleep_Patterns": Sleep_Patterns,
-            "History_of_Mental_Illness": History_of_Mental_Illness,
             "History_of_Substance_Abuse": History_of_Substance_Abuse,
             "Family_History_of_Depression": Family_History_of_Depression,
             "Chronic_Medical_Conditions": Chronic_Medical_Conditions,
