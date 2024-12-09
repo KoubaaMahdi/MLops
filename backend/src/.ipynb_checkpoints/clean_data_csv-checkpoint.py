@@ -13,36 +13,6 @@ with open("./src/label_encoders.pkl", "rb") as le_file:
 with open("./src/dummy_columns.pkl", "rb") as dc_file:
     dummy_columns = pickle.load(dc_file)
 
-# Define the training columns to ensure consistent data alignment
-training_cols = [
-    "Age", "Number of Children", "Smoking Status", "Physical Activity Level",
-    "Employment Status", "Income", "Alcohol Consumption", "Dietary Habits",
-    "Sleep Patterns", "History of Substance Abuse",
-    "Family History of Depression", "Chronic Medical Conditions",
-    "Marital Status_Divorced", "Marital Status_Married",
-    "Marital Status_Single", "Marital Status_Widowed",
-    "Education Level_Associate Degree", "Education Level_Bachelor's Degree",
-    "Education Level_High School", "Education Level_Master's Degree",
-    "Education Level_PhD"
-]
-
-def fix_missing_cols(training_cols, new_data):
-    """
-    Ensures the new data aligns with training columns by adding missing columns
-    and ensuring the correct order.
-
-    Args:
-        training_cols (list): List of columns from the training data.
-        new_data (pd.DataFrame): New data to be aligned.
-
-    Returns:
-        pd.DataFrame: Aligned data.
-    """
-    missing_cols = set(training_cols) - set(new_data.columns)
-    for c in missing_cols:
-        new_data[c] = 0  # Add missing columns with default value 0
-    new_data = new_data[training_cols]  # Ensure column order matches training
-    return new_data
 
 def clean_data(df):
     """
@@ -55,15 +25,20 @@ def clean_data(df):
         pd.DataFrame: Cleaned and processed data ready for prediction.
     """
     # Define the expected columns
-    expected_columns = [
-        "Age", "Marital Status", "Education Level", "Number of Children",
-        "Smoking Status", "Physical Activity Level", "Employment Status",
-        "Income", "Alcohol Consumption", "Dietary Habits", "Sleep Patterns", "History of Substance Abuse",
-        "Family History of Depression", "Chronic Medical Conditions"
-    ]
-
-    # Filter to keep only expected columns and drop others
-    df = df[expected_columns]
+    df = df.rename(columns={
+        "MaritalStatus": "Marital Status",
+        "EducationLevel": "Education Level",
+        "NumberOfChildren": "Number of Children",
+        "SmokingStatus": "Smoking Status",
+        "PhysicalActivityLevel": "Physical Activity Level",
+        "EmploymentStatus": "Employment Status",
+        "AlcoholConsumption": "Alcohol Consumption",
+        "DietaryHabits": "Dietary Habits",
+        "SleepPatterns": "Sleep Patterns",
+        "HistoryOfSubstanceAbuse": "History of Substance Abuse",
+        "FamilyHistoryOfDepression": "Family History of Depression",
+        "ChronicMedicalConditions": "Chronic Medical Conditions"
+    })
 
     # Cube root transformation for Income
     df["Income"] = np.cbrt(df["Income"])
@@ -93,5 +68,4 @@ def clean_data(df):
                 raise ValueError(f"No LabelEncoder found for column: {col}")
 
     # Align with training columns
-    df = fix_missing_cols(training_cols, df)
     return df

@@ -1,39 +1,39 @@
 from pydantic import BaseModel, Field
 
 class MentalHealthPredictionModel(BaseModel):
-    Age: int = Field(..., example=35)
-    Marital_Status: str = Field(..., example="Married")
-    Education_Level: str = Field(..., example="Bachelor's Degree")
-    Number_of_Children: int = Field(..., example=2)
-    Smoking_Status: str = Field(..., example="Non-smoker")
-    Physical_Activity_Level: str = Field(..., example="Active")
-    Employment_Status: str = Field(..., example="Employed")
-    Income: float = Field(..., example=60000.0)
-    Alcohol_Consumption: str = Field(..., example="Moderate")
-    Dietary_Habits: str = Field(..., example="Healthy")
-    Sleep_Patterns: str = Field(..., example="Good")
-    History_of_Substance_Abuse: str = Field(..., example="No")
-    Family_History_of_Depression: str = Field(..., example="Yes")
-    Chronic_Medical_Conditions: str = Field(..., example="No")
+    Age: int = Field(..., alias="Age", example=35)
+    MaritalStatus: str = Field(..., alias="Marital Status", example="Married")
+    EducationLevel: str = Field(..., alias="Education Level", example="Bachelor's Degree")
+    NumberOfChildren: int = Field(..., alias="Number of Children", example=2)
+    SmokingStatus: str = Field(..., alias="Smoking Status", example="Non-smoker")
+    PhysicalActivityLevel: str = Field(..., alias="Physical Activity Level", example="Active")
+    EmploymentStatus: str = Field(..., alias="Employment Status", example="Employed")
+    Income: float = Field(..., alias="Income", example=60000.0)
+    AlcoholConsumption: str = Field(..., alias="Alcohol Consumption", example="Moderate")
+    DietaryHabits: str = Field(..., alias="Dietary Habits", example="Healthy")
+    SleepPatterns: str = Field(..., alias="Sleep Patterns", example="Good")
+    HistoryOfSubstanceAbuse: str = Field(..., alias="History of Substance Abuse", example="No")
+    FamilyHistoryOfDepression: str = Field(..., alias="Family History of Depression", example="Yes")
+    ChronicMedicalConditions: str = Field(..., alias="Chronic Medical Conditions", example="No")
 
     class Config:
         populate_by_name = True
-        arbitrary_types_allowed = True
         json_schema_extra = {
-            "example": {
-                "Age": 35,
-                "Marital_Status": "Married",
-                "Education_Level": "Bachelor's Degree",
-                "Number_of_Children": 2,
-                "Smoking_Status": "Non-smoker",
-                "Physical_Activity_Level": "Active",
-                "Employment_Status": "Employed",
-                "Income": 60000.0,
-                "Alcohol_Consumption": "Moderate",
-                "Dietary_Habits": "Healthy",
-                "Sleep_Patterns": "Good",
-                "History_of_Substance_Abuse": "No",
-                "Family_History_of_Depression": "Yes",
-                "Chronic_Medical_Conditions": "No"
-            }
+        "example": {
+        "Age": 35,
+        "Marital Status": "Married",
+        "Education Level": "Bachelor's Degree",
+        "Number of Children": 2,
+        "Smoking Status": "Non-smoker",
+        "Physical Activity Level": "Active",
+        "Employment Status": "Employed",
+        "Income": 60000.0,
+        "Alcohol Consumption": "Moderate",
+        "Dietary Habits": "Healthy",
+        "Sleep Patterns": "Good",
+        "History of Substance Abuse": "No",
+        "Family History of Depression": "Yes",
+        "Chronic Medical Conditions": "No"
+    }
+
         }

@@ -11,8 +11,8 @@ backend_url = os.getenv("BACKEND_URL", "http://localhost:8080")
 # Create a horizontal navigation bar
 selected_page = option_menu(
     menu_title=None,  # No title for the menu
-    options=["Home", "Predict with Form", "Predict with CSV"],  # Menu options
-    icons=["house", "clipboard-data", "file-earmark-arrow-up"],  # Icons from Bootstrap
+    options=["Home", "Predict with Form", "Predict with CSV", "Power BI Dashboard"],  # Menu options
+    icons=["house", "clipboard-data", "file-earmark-arrow-up", "graph-up"],  # Icons from Bootstrap
     menu_icon="cast",  # Icon for the menu button (if collapsible)
     default_index=0,  # Default active menu
     orientation="horizontal",  # Orientation: horizontal or vertical
@@ -60,6 +60,7 @@ if selected_page == "Home":
         ### Features:
         - **Interactive Form**: Provide personal details to get an instant prediction.
         - **CSV Upload**: Analyze multiple records simultaneously.
+        - **Power BI Dashboard**: Visualize mental health trends and data insights.
         
         Use the navigation bar to explore the app.
         """
@@ -101,19 +102,19 @@ elif selected_page == "Predict with Form":
         # Collect data in a dictionary
         input_data = {
             "Age": Age,
-            "Marital_Status": Marital_Status,
-            "Education_Level": Education_Level,
-            "Number_of_Children": Number_of_Children,
-            "Smoking_Status": Smoking_Status,
-            "Physical_Activity_Level": Physical_Activity_Level,
-            "Employment_Status": Employment_Status,
+            "Marital Status": Marital_Status,
+            "Education Level": Education_Level,
+            "Number of Children": Number_of_Children,
+            "Smoking Status": Smoking_Status,
+            "Physical Activity Level": Physical_Activity_Level,
+            "Employment Status": Employment_Status,
             "Income": Income,
-            "Alcohol_Consumption": Alcohol_Consumption,
-            "Dietary_Habits": Dietary_Habits,
-            "Sleep_Patterns": Sleep_Patterns,
-            "History_of_Substance_Abuse": History_of_Substance_Abuse,
-            "Family_History_of_Depression": Family_History_of_Depression,
-            "Chronic_Medical_Conditions": Chronic_Medical_Conditions,
+            "Alcohol Consumption": Alcohol_Consumption,
+            "Dietary Habits": Dietary_Habits,
+            "Sleep Patterns": Sleep_Patterns,
+            "History of Substance Abuse": History_of_Substance_Abuse,
+            "Family History of Depression": Family_History_of_Depression,
+            "Chronic Medical Conditions": Chronic_Medical_Conditions,
         }
 
         # Submit button
@@ -130,6 +131,7 @@ elif selected_page == "Predict with Form":
                 elif predictions == [1]:
                     st.warning("⚠️ The individual may be at risk of mental health issues.")
                 else:
+                    st.error(predictions)
                     st.error("❌ An error occurred while processing the prediction.")
             except Exception as e:
                 st.error(f"An error occurred: {e}")
@@ -153,3 +155,17 @@ elif selected_page == "Predict with CSV":
                 st.text(f"Record {idx}: {'⚠️ At risk' if prediction == 1 else '✅ Not at risk'}")
         except Exception as e:
             st.error(f"An error occurred while processing the file: {e}")
+
+# Power BI Dashboard Page
+elif selected_page == "Power BI Dashboard":
+    st.title("📊 Mental Health Dashboard")
+    st.markdown(
+        """
+        This dashboard provides an overview of trends and insights into mental health data.
+        """
+    )
+
+    st.markdown(
+        f'<iframe title="Depression" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiYmM3MDA5NTUtMjg5Mi00ZTM2LWIxODktNzRlMDJiYjU2NzVlIiwidCI6ImRiZDY2NjRkLTRlYjktNDZlYi05OWQ4LTVjNDNiYTE1M2M2MSIsImMiOjl9&pageName=337f1f81144651557047" frameborder="0" allowFullScreen="true"></iframe>',
+        unsafe_allow_html=True,
+    )

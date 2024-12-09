@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 import os
 
 os.environ['MLFLOW_TRACKING_USERNAME']= "KoubaaMahdi"
-os.environ["MLFLOW_TRACKING_PASSWORD"] = "92383ba91053d52a2f9baccab48bf2c0c44ba250"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "666511bfd2b2180d037f16fac402803ea2a8aed1"
 
 
 #setup mlflow
@@ -51,7 +51,7 @@ model = mlflow.pyfunc.load_model(logged_model)
 
 @app.get("/")
 def read_root():
-    return {"Hello": "to fraud detector app version 2"}
+    return {"Hello": "to fraud detector app version 1"}
 
 # this endpoint receives data in the form of csv file (histotical transactions data)
 @app.post("/predict/csv")
@@ -68,7 +68,8 @@ def predict(data : MentalHealthPredictionModel):
     received = data.dict()
     df =  pd.DataFrame(received,index=[0])
     preprocessed_data = clean_data_json(df)
-    print(preprocessed_data)
+    print("Received DataFrame:", flush=True)
+    print(preprocessed_data, flush=True)
     predictions = model.predict(preprocessed_data)
     return {"predictions": predictions.tolist()}
 
