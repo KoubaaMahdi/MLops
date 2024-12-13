@@ -3,10 +3,10 @@ import pickle
 import numpy as np
 
 # Load pre-saved encoders and dummy column structure
-with open("./src/label_encoders.pkl", "rb") as le_file:
+with open("./label_encoders.pkl", "rb") as le_file:
     label_encoders = pickle.load(le_file)
 
-with open("./src/dummy_columns.pkl", "rb") as dc_file:
+with open("./dummy_columns.pkl", "rb") as dc_file:
     dummy_columns = pickle.load(dc_file)
 
 def transform_data(df):
