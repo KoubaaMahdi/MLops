@@ -31,7 +31,7 @@ def naive_bayes_model(data_url, version, df, x_train, y_train, x_test, y_test):
 
 def knn_model(data_url, version, df, x_train, y_train, x_test, y_test):
     mlflow.sklearn.autolog(disable=True)
-    with mlflow.start_run(run_name='Naive Bayes'):
+    with mlflow.start_run(run_name='K-Nearest Neighbors'):
         mlflow.log_param("data_url", data_url)
         mlflow.log_param("data_version", version)
         mlflow.log_param("input_rows", df.shape[0])
@@ -50,5 +50,5 @@ def knn_model(data_url, version, df, x_train, y_train, x_test, y_test):
         mlflow.log_metric("Precision_test",precision)
         mlflow.log_metric("Recall_test",recall)
         mlflow.log_metric("F1_score_test",fscore)
-        mlflow.sklearn.log_model(nb,artifact_path="ML_models")
+        mlflow.sklearn.log_model(knn,artifact_path="ML_models")
     
