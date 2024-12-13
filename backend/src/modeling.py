@@ -41,5 +41,5 @@ df = pd.read_csv(data_url)
 X_train,X_test,y_train,y_test = transform_data(df)
 
 #Execute the models with new version of data:
-naive_bayes_model(data_url,version,df,X_resampled,y_resampled,X_test,y_test)
-knn_model(data_url,version,df,X_resampled,y_resampled,X_test,y_test)
+naive_bayes_model(data_url,version,df,X_train,y_train,X_test,y_test)
+knn_model(data_url,version,df,X_train,y_train,X_test,y_test)
