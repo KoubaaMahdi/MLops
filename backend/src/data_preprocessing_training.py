@@ -1,6 +1,7 @@
 import pandas as pd
 import pickle
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 # Load pre-saved encoders and dummy column structure
 with open("./label_encoders.pkl", "rb") as le_file:
@@ -38,7 +39,6 @@ def transform_data(df):
             else:
                 raise ValueError(f"No LabelEncoder found for column: {col}")
     X = df
-    print(X)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=1)  # Split data 80/20
     #scaler = MinMaxScaler()  # Normalize train & test features
