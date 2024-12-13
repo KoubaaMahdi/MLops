@@ -10,6 +10,7 @@ with open("./dummy_columns.pkl", "rb") as dc_file:
     dummy_columns = pickle.load(dc_file)
 
 def transform_data(df):
+    y = df['History of Mental Illness']
     # Cube root transformation for Income
     df["Income"] = np.cbrt(df["Income"])
     # Handle categorical features
@@ -36,8 +37,8 @@ def transform_data(df):
                 df[col] = le.transform(df[col])
             else:
                 raise ValueError(f"No LabelEncoder found for column: {col}")
-    X = df.drop('History of Mental Illness', axis = 1)
-    y = df['History of Mental Illness']
+    X = df
+    print(X)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=1)  # Split data 80/20
     #scaler = MinMaxScaler()  # Normalize train & test features
