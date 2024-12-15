@@ -81,7 +81,7 @@ The MLOps pipeline includes the following components:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/KoubaaMahdi/mental-illness-detection-mlops
+   git clone https://github.com/KoubaaMahdi/MLops.git
    cd mental-illness-detection-mlops
    ```
 
