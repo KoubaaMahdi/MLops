@@ -18,12 +18,12 @@ import mlflow.pyfunc
 from dotenv import load_dotenv
 import os
 
-os.environ['MLFLOW_TRACKING_USERNAME']= "KoubaaMahdi"
-os.environ["MLFLOW_TRACKING_PASSWORD"] = "666511bfd2b2180d037f16fac402803ea2a8aed1"
+os.environ['MLFLOW_TRACKING_USERNAME']= "..."
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "..."
 
 
 #setup mlflow
-mlflow.set_tracking_uri('https://dagshub.com/KoubaaMahdi/MLOps_project.mlflow') #your mlfow tracking uri
+mlflow.set_tracking_uri('...') #your mlfow tracking uri
 
 
 app = FastAPI()
